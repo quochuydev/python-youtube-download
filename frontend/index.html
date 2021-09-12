@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Python Vue - Download video youtube</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="styles.css">
+  
+  <script src="lib/vue.js"></script>
+  <script type="text/javascript" src="lib/axios.js"></script>
+</head>
+
+<body>
+<div id="app" class="container">
+  <div>
+    <p>url youtube</p>
+    <input type="text" v-model="url" id="url" class="form-control" placeholder="https://www.youtube.com/watch?v=xxxxxxxxx">
+    <button id="getInfo" class="btn mt-1" @click.prevent="getInfo"
+      v-bind:class='{ disabled: loading }'
+    >
+      Get info
+    </button>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-4 col-sm-12">
+      <div class="list-group">
+        <button v-for="tag of tags"
+          type="button"
+          v-on:click='download(tag.itag)'
+          class="list-group-item list-group-item-action"
+          v-bind:class='{ active: tagId === tag.id, disabled: loading }'
+        >
+        {{tag.itag}} - {{tag.resolution}}
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-sm-12">
+      <a v-for="downloadUrl of downloadUrls" v-bind:href="downloadUrl" target="_blank">{{downloadUrl}}</p>
+    </div>
+
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
