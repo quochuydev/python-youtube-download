@@ -16,7 +16,7 @@ def hello():
 def getInfo():
 	link = request.json['url']
 	yt = YouTube(link)
-	my_stream = yt.streams.filter(file_extension="mp4", only_video=True)
+	my_stream = yt.streams.filter(file_extension="mp4", mime_type="video/mp4", progressive=True)
 
 	tags = []
 	for stream in my_stream:
